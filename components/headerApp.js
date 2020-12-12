@@ -1,54 +1,37 @@
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { Label, FixedPanel, ContainerApp, Content } from "../styles/styles";
 import {
-  HeaderApp,
-  Container,
-  Content,
-  CenterLayourt,
-  ContainerMenu,
-  MenuApp,
-  MenuItens,
-  MenuLogo,
-  ContainerLogo,
-  Label,
-  FixedPanel,
-  LogoContainerPanel,
-  MenuItensPanel,
-  GridFixedPanel,
-  LabelThree,
-  LabelTwo,
-} from "../styles/styles";
-import {
-  Icon,
-  Heading,
-  InputGroup,
-  InputLeftElement,
   Input,
-  InputRightElement,
   Button,
   IconButton,
   Divider,
   Flex,
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
+  DrawerCloseButton,
+  Box,
+  Grid,
 } from "@chakra-ui/react";
 import {
   AiOutlineUser,
   AiOutlineHeart,
   AiOutlineMenu,
-  AiOutlineClose,
+  AiOutlineHome,
+  AiOutlineTags,
+  AiOutlineInfoCircle,
+  AiOutlineExpandAlt,
 } from "react-icons/ai";
 import { BsBag, BsBagFill } from "react-icons/bs";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { FiMapPin } from "react-icons/fi";
 
 import configs from "../configs/configs";
-import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
   const router = useRouter();
@@ -71,222 +54,458 @@ export default function Home() {
     });
   }, []);
 
-  function routing(event, href) {
-    event.preventDefault();
-    router.push(href);
-  }
-
   return (
-    <CenterLayourt>
+    <ContainerApp>
       <Head>
         <title>Dolce Encanto</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
+      {/** PAINEL FIXO */}
+
       <FixedPanel display={display} bg={configs.template.index.fixedPanel.bg}>
-        <GridFixedPanel>
-          <LogoContainerPanel>
-            <LogoContainerPanel>
+        <Grid
+          templateColumns={[
+            "50px 1fr",
+            "50px 1fr",
+            "200px 1fr",
+            "200px 1fr",
+            "200px 1fr",
+          ]}
+          gap={20}
+          h="50px"
+          w={"100%"}
+          pl={10}
+          pr={10}
+          alignItems="center"
+        >
+          <Flex align="center">
+            <Box w="45px" h="45px" mr={5}>
               <Image
                 src="/img/icon-black.png"
-                width={50}
-                height={50}
+                width={45}
+                height={45}
                 quality={100}
+                layout="fixed"
+                objectFit="fill"
+                objectPosition="50% 50%"
               />
-              <div style={{ width: 20 }} />
+            </Box>
+            <Box
+              w="130px"
+              h="30px"
+              display={["none", "none", "block", "block", "block"]}
+            >
               <Image
                 src="/img/name-slug.png"
                 width={130}
                 height={30}
                 quality={100}
+                layout="fixed"
               />
-            </LogoContainerPanel>
-            <LogoContainerPanel style={{ marginLeft: 20 }}>
-              <MenuApp>
-                <MenuItensPanel
-                  color={configs.template.index.fixedPanel.color}
-                  onClick={(e) => routing(e, "/")}
-                >
-                  INÍCIO
-                </MenuItensPanel>
-                <MenuItensPanel color={configs.template.index.fixedPanel.color}>
-                  CATEGORIAS <Icon as={RiArrowDownSLine} />
-                </MenuItensPanel>
-                <MenuItensPanel color={configs.template.index.fixedPanel.color}>
-                  PRODUTOS <Icon as={RiArrowDownSLine} />
-                </MenuItensPanel>
-                <MenuItensPanel color={configs.template.index.fixedPanel.color}>
-                  SOBRE NÓS
-                </MenuItensPanel>
-              </MenuApp>
-            </LogoContainerPanel>
-          </LogoContainerPanel>
-          <Flex display={["none", "none", "flex", "flex", "flex", "flex"]}>
-            <IconButton
-              variant="link"
-              color={configs.template.index.fixedPanel.color}
-              icon={<AiOutlineHeart />}
-              size="md"
-              fontSize={35}
-              mr={4}
-            />
-            <LabelTwo>2</LabelTwo>
-            <IconButton
-              variant="link"
-              icon={<BsBag />}
-              size="md"
-              fontSize={30}
-              color={configs.template.index.fixedPanel.color}
-            />
-            <LabelThree>3</LabelThree>
+            </Box>
           </Flex>
-        </GridFixedPanel>
-      </FixedPanel>
-      <HeaderApp>
-        <ContainerMenu>
-          <div>
-            <Heading
-              size="xs"
-              color={configs.template.index.panel.color}
-              display={["none", "none", "none", "none", "block", "block"]}
-            >
-              Tudo o que você precisa, aqui tem!
-            </Heading>
-            <Flex display={["flex", "flex", "flex", "flex", "none", "none"]}>
-              <Flex w={"50%"} justify="flex-start" align="center">
-                <Image
-                  src="/img/icon-black.png"
-                  width={"43px"}
-                  height={"43px"}
-                  quality={100}
-                />
-                <div style={{ width: 20 }} />
-                <Image
-                  src="/img/name-slug.png"
-                  width={"130px"}
-                  height={"25px"}
-                  quality={100}
-                />
-              </Flex>
-              <Flex w={"50%"} justify="flex-end" align="center">
-                <IconButton
-                  variant="ghost"
-                  colorScheme={configs.template.index.fixedPanel.hamburgerMenu}
-                  aria-label="Call Sage"
-                  fontSize="30px"
-                  icon={
-                    menuOpen === false ? <AiOutlineMenu /> : <AiOutlineClose />
-                  }
-                  onClick={() => setMenuOpen(!menuOpen)}
-                />
-              </Flex>
+          <Flex justify="flex-end">
+            <Flex display={["none", "none", "none", "none", "flex"]}>
+              <Link href="/" passHref>
+                <a>
+                  <Button
+                    size="lg"
+                    borderRadius="sm"
+                    variant="ghost"
+                    colorScheme="yellow"
+                    _focus={{
+                      boxShadow: "none",
+                      outline: "none",
+                    }}
+                    color="gray.900"
+                    _hover={{
+                      bg: configs.template.index.fixedPanel.color,
+                      color: configs.template.index.fixedPanel.bg,
+                    }}
+                    _active={{
+                      bg: configs.template.index.fixedPanel.active.bg,
+                      color: configs.template.index.fixedPanel.active.color,
+                    }}
+                    fontSize="sm"
+                    onClick={() => {}}
+                    leftIcon={<AiOutlineHome />}
+                    mr={1}
+                  >
+                    Início
+                  </Button>
+                </a>
+              </Link>
+              <Button
+                leftIcon={<AiOutlineTags />}
+                size="lg"
+                borderRadius="sm"
+                variant="ghost"
+                colorScheme="yellow"
+                _focus={{
+                  boxShadow: "none",
+                  outline: "none",
+                }}
+                color="gray.900"
+                _hover={{
+                  bg: configs.template.index.fixedPanel.color,
+                  color: configs.template.index.fixedPanel.bg,
+                }}
+                _active={{
+                  bg: configs.template.index.fixedPanel.active.bg,
+                  color: configs.template.index.fixedPanel.active.color,
+                }}
+                fontSize="sm"
+                onClick={() => {}}
+                rightIcon={<AiOutlineExpandAlt />}
+                mr={1}
+              >
+                Produtos
+              </Button>
+              <Link href="/" passHref>
+                <a>
+                  <Button
+                    leftIcon={<AiOutlineInfoCircle />}
+                    size="lg"
+                    borderRadius="sm"
+                    variant="ghost"
+                    colorScheme="yellow"
+                    _focus={{
+                      boxShadow: "none",
+                      outline: "none",
+                    }}
+                    color="gray.900"
+                    _hover={{
+                      bg: configs.template.index.fixedPanel.color,
+                      color: configs.template.index.fixedPanel.bg,
+                    }}
+                    _active={{
+                      bg: configs.template.index.fixedPanel.active.bg,
+                      color: configs.template.index.fixedPanel.active.color,
+                    }}
+                    fontSize="sm"
+                    onClick={() => {}}
+                    mr={1}
+                  >
+                    Sobre Nós
+                  </Button>
+                </a>
+              </Link>
+              <Link href="/" passHref>
+                <a>
+                  <Button
+                    leftIcon={<FiMapPin />}
+                    size="lg"
+                    borderRadius="sm"
+                    variant="ghost"
+                    colorScheme="yellow"
+                    _focus={{
+                      boxShadow: "none",
+                      outline: "none",
+                    }}
+                    color="gray.900"
+                    _hover={{
+                      bg: configs.template.index.fixedPanel.color,
+                      color: configs.template.index.fixedPanel.bg,
+                    }}
+                    _active={{
+                      bg: configs.template.index.fixedPanel.active.bg,
+                      color: configs.template.index.fixedPanel.active.color,
+                    }}
+                    fontSize="sm"
+                    onClick={() => {}}
+                    mr={2}
+                  >
+                    Onde Estamos
+                  </Button>
+                </a>
+              </Link>
+              <IconButton
+                variant="link"
+                color={configs.template.index.fixedPanel.color}
+                icon={<AiOutlineUser />}
+                size="md"
+                fontSize={30}
+              />
+              <Divider
+                orientation="vertical"
+                borderColor={configs.template.index.fixedPanel.bg}
+                mr={1}
+                ml={1}
+              />
+              <IconButton
+                variant="link"
+                color={configs.template.index.fixedPanel.color}
+                icon={<AiOutlineHeart />}
+                size="md"
+                fontSize={30}
+              />
+              <Label right={"88px"}>2</Label>
+              <Divider
+                orientation="vertical"
+                borderColor={configs.template.index.fixedPanel.bg}
+                mr={1}
+                ml={1}
+              />
+              <IconButton
+                variant="link"
+                icon={<BsBag />}
+                size="md"
+                fontSize={30}
+                color={configs.template.index.fixedPanel.color}
+              />
+              <Label right={"40px"}>1</Label>
             </Flex>
-          </div>
-          <MenuApp>
-            <MenuItens
-              onClick={(e) => routing(e, "/")}
-              color={configs.template.index.panel.color}
-            >
-              INÍCIO
-            </MenuItens>
-            <MenuItens color={configs.template.index.panel.color}>
-              CATEGORIAS <Icon as={RiArrowDownSLine} />
-            </MenuItens>
-            <MenuItens color={configs.template.index.panel.color}>
-              PRODUTOS <Icon as={RiArrowDownSLine} />
-            </MenuItens>
-            <MenuItens color={configs.template.index.panel.color}>
-              SOBRE NÓS
-            </MenuItens>
-          </MenuApp>
-        </ContainerMenu>
-      </HeaderApp>
-      <Content>
-        <Image
-          src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/14/slider/slide1.jpg"
-          width={1356}
-          height={567}
-          layout="responsive"
-          alt="Banner Dolce Encanto"
-        />
-        <MenuLogo>
-          <ContainerLogo>
+            <Flex display={["none", "none", "flex", "flex", "none"]}>
+              <IconButton
+                variant="link"
+                color={configs.template.index.fixedPanel.color}
+                icon={<AiOutlineUser />}
+                size="md"
+                fontSize={30}
+              />
+              <Divider
+                orientation="vertical"
+                borderColor={configs.template.index.fixedPanel.bg}
+                mr={1}
+                ml={1}
+              />
+              <IconButton
+                variant="link"
+                color={configs.template.index.fixedPanel.color}
+                icon={<AiOutlineHeart />}
+                size="md"
+                fontSize={30}
+              />
+              <Label right={"170px"}>2</Label>
+              <Divider
+                orientation="vertical"
+                borderColor={configs.template.index.fixedPanel.bg}
+                mr={1}
+                ml={1}
+              />
+              <IconButton
+                variant="link"
+                icon={<BsBag />}
+                size="md"
+                fontSize={30}
+                color={configs.template.index.fixedPanel.color}
+              />
+              <Label right={"120px"}>1</Label>
+              <IconButton
+                variant="solid"
+                icon={<AiOutlineMenu />}
+                size="md"
+                fontSize={30}
+                colorScheme={configs.template.index.fixedPanel.hamburgerMenu}
+                onClick={() => setMenuOpen(!menuOpen)}
+                ml={10}
+              />
+            </Flex>
+            <Flex display={["flex", "flex", "none", "none", "none"]}>
+              <IconButton
+                variant="link"
+                icon={<BsBag />}
+                size="md"
+                fontSize={30}
+                color={configs.template.index.fixedPanel.color}
+              />
+              <Label right={"120px"}>1</Label>
+              <IconButton
+                variant="solid"
+                icon={<AiOutlineMenu />}
+                size="md"
+                fontSize={30}
+                colorScheme={configs.template.index.fixedPanel.hamburgerMenu}
+                onClick={() => setMenuOpen(!menuOpen)}
+                ml={10}
+              />
+            </Flex>
+          </Flex>
+        </Grid>
+      </FixedPanel>
+
+      {/** MENU PRINCIPAL */}
+
+      <Grid
+        templateColumns={[
+          "50px 1fr",
+          "50px 1fr",
+          "200px 1fr",
+          "200px 1fr",
+          "200px 1fr",
+        ]}
+        gap={20}
+        h="60px"
+        bg={configs.template.index.fixedPanel.bg}
+        w={"100%"}
+        pl={10}
+        pr={10}
+        alignItems="center"
+      >
+        <Flex align="center">
+          <Box w="50px" h="50px" mr={5}>
             <Image
               src="/img/icon-black.png"
               width={50}
               height={50}
               quality={100}
+              layout="fixed"
             />
-            <div style={{ width: 20 }} />
+          </Box>
+          <Box
+            w="130px"
+            h="30px"
+            display={["none", "none", "block", "block", "block"]}
+          >
             <Image
               src="/img/name-slug.png"
               width={130}
               height={30}
               quality={100}
+              layout="fixed"
             />
-          </ContainerLogo>
-          <Flex
-            justify="flex-end"
-            height={10}
-            display={["none", "none", "none", "none", "flex", "flex"]}
-          >
-            <InputGroup
-              style={{ width: 350 }}
-              display={["none", "none", "none", "none", "flex", "flex"]}
-            >
-              <InputLeftElement children={<Icon as={FaSearch} />} />
-              <Input
-                type="text"
-                placeholder="Buscar"
-                bg="transparent"
-                variant="outline"
-                borderColor={configs.template.index.headerBanner.color}
-                focusBorderColor={
-                  configs.template.index.headerBanner.activeInput
-                }
-                _placeholder={{
-                  color: `${configs.template.index.headerBanner.placeholder}`,
-                }}
-              />
-              <InputRightElement w={"80px"}>
+          </Box>
+        </Flex>
+        <Flex justify="flex-end">
+          <Flex display={["none", "none", "none", "none", "flex"]}>
+            <Link href="/" passHref>
+              <a>
                 <Button
-                  size="sm"
-                  colorScheme={configs.template.index.headerBanner.bannerBtn}
-                  h="1.8rem"
-                  variant="solid"
+                  size="lg"
+                  borderRadius="sm"
+                  variant="ghost"
+                  colorScheme="yellow"
                   _focus={{
-                    borderColor: configs.template.index.headerBanner.btnColor,
+                    boxShadow: "none",
+                    outline: "none",
                   }}
+                  color="gray.900"
+                  _hover={{
+                    bg: configs.template.index.fixedPanel.color,
+                    color: configs.template.index.fixedPanel.bg,
+                  }}
+                  _active={{
+                    bg: configs.template.index.fixedPanel.active.bg,
+                    color: configs.template.index.fixedPanel.active.color,
+                  }}
+                  fontSize="sm"
+                  onClick={() => {}}
+                  leftIcon={<AiOutlineHome />}
+                  mr={1}
                 >
-                  Buscar
+                  Início
                 </Button>
-              </InputRightElement>
-            </InputGroup>
-
+              </a>
+            </Link>
+            <Button
+              leftIcon={<AiOutlineTags />}
+              size="lg"
+              borderRadius="sm"
+              variant="ghost"
+              colorScheme="yellow"
+              _focus={{
+                boxShadow: "none",
+                outline: "none",
+              }}
+              color="gray.900"
+              _hover={{
+                bg: configs.template.index.fixedPanel.color,
+                color: configs.template.index.fixedPanel.bg,
+              }}
+              _active={{
+                bg: configs.template.index.fixedPanel.active.bg,
+                color: configs.template.index.fixedPanel.active.color,
+              }}
+              fontSize="sm"
+              onClick={() => {}}
+              rightIcon={<AiOutlineExpandAlt />}
+              mr={1}
+            >
+              Produtos
+            </Button>
+            <Link href="/" passHref>
+              <a>
+                <Button
+                  leftIcon={<AiOutlineInfoCircle />}
+                  size="lg"
+                  borderRadius="sm"
+                  variant="ghost"
+                  colorScheme="yellow"
+                  _focus={{
+                    boxShadow: "none",
+                    outline: "none",
+                  }}
+                  color="gray.900"
+                  _hover={{
+                    bg: configs.template.index.fixedPanel.color,
+                    color: configs.template.index.fixedPanel.bg,
+                  }}
+                  _active={{
+                    bg: configs.template.index.fixedPanel.active.bg,
+                    color: configs.template.index.fixedPanel.active.color,
+                  }}
+                  fontSize="sm"
+                  onClick={() => {}}
+                  mr={1}
+                >
+                  Sobre Nós
+                </Button>
+              </a>
+            </Link>
+            <Link href="/" passHref>
+              <a>
+                <Button
+                  leftIcon={<FiMapPin />}
+                  size="lg"
+                  borderRadius="sm"
+                  variant="ghost"
+                  colorScheme="yellow"
+                  _focus={{
+                    boxShadow: "none",
+                    outline: "none",
+                  }}
+                  color="gray.900"
+                  _hover={{
+                    bg: configs.template.index.fixedPanel.color,
+                    color: configs.template.index.fixedPanel.bg,
+                  }}
+                  _active={{
+                    bg: configs.template.index.fixedPanel.active.bg,
+                    color: configs.template.index.fixedPanel.active.color,
+                  }}
+                  fontSize="sm"
+                  onClick={() => {}}
+                  mr={2}
+                >
+                  Onde Estamos
+                </Button>
+              </a>
+            </Link>
             <IconButton
               variant="link"
-              color={configs.template.index.headerBanner.color}
+              color={configs.template.index.fixedPanel.color}
               icon={<AiOutlineUser />}
               size="md"
               fontSize={30}
             />
             <Divider
               orientation="vertical"
-              borderColor={configs.template.index.headerBanner.color}
+              borderColor={configs.template.index.fixedPanel.bg}
               mr={1}
               ml={1}
             />
             <IconButton
               variant="link"
-              color={configs.template.index.headerBanner.color}
+              color={configs.template.index.fixedPanel.color}
               icon={<AiOutlineHeart />}
               size="md"
               fontSize={30}
             />
-            <Label style={{ right: 100 }}>1</Label>
+            <Label right={"88px"}>2</Label>
             <Divider
               orientation="vertical"
-              borderColor={configs.template.index.headerBanner.color}
+              borderColor={configs.template.index.fixedPanel.bg}
               mr={1}
               ml={1}
             />
@@ -295,12 +514,87 @@ export default function Home() {
               icon={<BsBag />}
               size="md"
               fontSize={30}
-              color={configs.template.index.headerBanner.color}
+              color={configs.template.index.fixedPanel.color}
             />
-            <Label>1</Label>
+            <Label right={"40px"}>1</Label>
           </Flex>
-        </MenuLogo>
-      </Content>
+          <Flex display={["none", "none", "flex", "flex", "none"]}>
+            <IconButton
+              variant="link"
+              color={configs.template.index.fixedPanel.color}
+              icon={<AiOutlineUser />}
+              size="md"
+              fontSize={30}
+            />
+            <Divider
+              orientation="vertical"
+              borderColor={configs.template.index.fixedPanel.bg}
+              mr={1}
+              ml={1}
+            />
+            <IconButton
+              variant="link"
+              color={configs.template.index.fixedPanel.color}
+              icon={<AiOutlineHeart />}
+              size="md"
+              fontSize={30}
+            />
+            <Label right={"170px"}>2</Label>
+            <Divider
+              orientation="vertical"
+              borderColor={configs.template.index.fixedPanel.bg}
+              mr={1}
+              ml={1}
+            />
+            <IconButton
+              variant="link"
+              icon={<BsBag />}
+              size="md"
+              fontSize={30}
+              color={configs.template.index.fixedPanel.color}
+            />
+            <Label right={"120px"}>1</Label>
+            <IconButton
+              variant="solid"
+              icon={<AiOutlineMenu />}
+              size="md"
+              fontSize={30}
+              colorScheme={configs.template.index.fixedPanel.hamburgerMenu}
+              onClick={() => setMenuOpen(!menuOpen)}
+              ml={10}
+            />
+          </Flex>
+          <Flex display={["flex", "flex", "none", "none", "none"]}>
+            <IconButton
+              variant="link"
+              icon={<BsBag />}
+              size="md"
+              fontSize={30}
+              color={configs.template.index.fixedPanel.color}
+            />
+            <Label right={"120px"}>1</Label>
+            <IconButton
+              variant="solid"
+              icon={<AiOutlineMenu />}
+              size="md"
+              fontSize={30}
+              colorScheme={configs.template.index.fixedPanel.hamburgerMenu}
+              onClick={() => setMenuOpen(!menuOpen)}
+              ml={10}
+            />
+          </Flex>
+        </Flex>
+      </Grid>
+
+      <Box w="100%">
+        <Image
+          src="https://sacada.vteximg.com.br/arquivos/ids/169680/Sacada-Roupas-Femininas-fullbanner_int-RealLife.jpg?v=636503257764370000"
+          width={1085}
+          height={373}
+          layout="responsive"
+          alt="Banner Dolce Encanto"
+        />
+      </Box>
 
       <Drawer
         isOpen={menuOpen}
@@ -309,6 +603,7 @@ export default function Home() {
       >
         <DrawerOverlay />
         <DrawerContent>
+          <DrawerCloseButton />
           <DrawerHeader bg={configs.template.index.drawer.header}>
             <Flex justify="flex-start" align="center" mb={"-5px"} mt={"-5px"}>
               <Image
@@ -330,18 +625,8 @@ export default function Home() {
           <DrawerBody overflow="auto">
             <Input placeholder="Type here..." />
           </DrawerBody>
-
-          <DrawerFooter borderWidth="1px" p={2}>
-            <Button
-              onClick={() => setMenuOpen(false)}
-              colorScheme={configs.template.index.drawer.btnClose}
-              size="sm"
-            >
-              Fechar
-            </Button>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </CenterLayourt>
+    </ContainerApp>
   );
 }

@@ -7,6 +7,7 @@ module.exports = {
       "media-exp1.licdn.com",
       "logosmarcas.net",
       "http2.mlstatic.com",
+      "sacada.vteximg.com.br",
     ],
   },
   trailingSlash: true,

@@ -22,6 +22,10 @@ const configs = {
         bg: "#D4AF37",
         color: "#0A100D",
         hamburgerMenu: "gray",
+        active: {
+          color: "yellow.400",
+          bg: "gray.800",
+        },
       },
       headerBanner: {
         color: "white",
@@ -74,7 +78,11 @@ const configs = {
       },
     },
     product: {
-      radiogroup: "yellow",
+      radiogroup: {
+        bg: "yellow.400",
+        border: "yellow.500",
+        color: "black",
+      },
       btnCart: "yellow",
     },
   },

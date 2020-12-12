@@ -3,6 +3,7 @@ import {
   Flex,
   Grid,
   Heading,
+  Icon,
   IconButton,
   Input,
   InputGroup,
@@ -12,8 +13,9 @@ import {
 import Link from "next/link";
 import configs from "../configs/configs";
 import { FiMapPin, FiPhone } from "react-icons/fi";
-import { AiOutlineMail, AiFillInstagram, AiFillFacebook } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 import { RiArrowRightSFill, RiSendPlaneFill } from "react-icons/ri";
+import { FaInstagramSquare, FaFacebookSquare } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -43,7 +45,7 @@ export default function Footer() {
             pl={"5px"}
             color={configs.template.footer.text}
           >
-            <Box as={FiMapPin} w={"40px"} h={"40px"} size="26px" mr={"15px"} />
+            <Icon as={FiMapPin} mr={"15px"} />
             <Box>
               <Heading size="xs">ENDEREÇO</Heading>
               <Text fontSize="sm" textAlign="justify">
@@ -59,7 +61,7 @@ export default function Footer() {
             pl={"5px"}
             color={configs.template.footer.text}
           >
-            <Box as={FiPhone} w={"40px"} h={"40px"} size="26px" mr={"15px"} />
+            <Icon as={FiPhone} mr={"15px"} />
             <Box>
               <Heading size="xs">TELEFONE</Heading>
               <Text fontSize="sm" textAlign="justify">
@@ -75,13 +77,7 @@ export default function Footer() {
             pl={"5px"}
             color={configs.template.footer.text}
           >
-            <Box
-              as={AiOutlineMail}
-              w={"40px"}
-              h={"40px"}
-              size="26px"
-              mr={"15px"}
-            />
+            <Icon as={AiOutlineMail} mr={"15px"} />
             <Box>
               <Heading size="xs">EMAIL</Heading>
               <Text fontSize="sm" textAlign="justify">
@@ -199,7 +195,7 @@ export default function Footer() {
                 children={
                   <IconButton
                     aria-label="Search database"
-                    icon={RiSendPlaneFill}
+                    icon={<RiSendPlaneFill />}
                     fontSize="25px"
                     size="sm"
                   />
@@ -228,15 +224,15 @@ export default function Footer() {
             © NK Informática eCommerce. 2021. Todos os Direitos Reservados.
           </Text>
           <Link href="/">
-            <Box
-              as={AiFillInstagram}
-              size="30px"
+            <Icon
+              as={FaInstagramSquare}
+              fontSize="30px"
               mr={"20px"}
               cursor="pointer"
             />
           </Link>
           <Link href="/">
-            <Box as={AiFillFacebook} size="30px" cursor="pointer" />
+            <Icon as={FaFacebookSquare} fontSize="30px" cursor="pointer" />
           </Link>
         </Flex>
       </Box>
