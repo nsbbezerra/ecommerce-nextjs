@@ -84,6 +84,16 @@ const configs = {
         color: "black",
       },
       btnCart: "yellow",
+      descBg: "gray.100",
+    },
+    chart: {
+      bgBanner: "yellow.400",
+      btnCalc: "yellow",
+    },
+    checkout: {
+      bgBanner: "yellow.400",
+      tabsColor: "yellow",
+      radioColor: "yellow",
     },
   },
   carousel: {

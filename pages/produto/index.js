@@ -175,10 +175,8 @@ export default function Produto() {
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <WrapItem>
-              <RadioCard key={value} {...radio}>
-                {value}
-              </RadioCard>
+            <WrapItem key={value}>
+              <RadioCard {...radio}>{value}</RadioCard>
             </WrapItem>
           );
         })}
@@ -202,10 +200,8 @@ export default function Produto() {
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <WrapItem>
-              <RadioCardSize key={value} {...radio}>
-                {value}
-              </RadioCardSize>
+            <WrapItem key={value}>
+              <RadioCardSize {...radio}>{value}</RadioCardSize>
             </WrapItem>
           );
         })}
@@ -478,7 +474,7 @@ export default function Produto() {
 
       <ContainerNonFixed>
         <Flex
-          bg="gray.100"
+          bg={configs.template.product.descBg}
           mt={20}
           align="center"
           justify="center"

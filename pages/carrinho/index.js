@@ -29,6 +29,7 @@ import {
   AiOutlineCalculator,
   AiOutlineCheck,
 } from "react-icons/ai";
+import configs from "../../configs/configs";
 
 export default function Carrinho() {
   const [qtd, setQtd] = useState(1);
@@ -47,7 +48,7 @@ export default function Carrinho() {
       <Fixed>
         <Container maxW="6xl" mt={10} mb={10}>
           <Flex
-            bg="yellow.400"
+            bg={configs.template.chart.bgBanner}
             p={3}
             shadow="md"
             borderRadius="md"

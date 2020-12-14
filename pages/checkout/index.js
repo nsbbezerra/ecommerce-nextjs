@@ -46,6 +46,7 @@ import {
 import { FaList, FaCreditCard } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import configs from "../../configs/configs";
 
 export default function Checkout() {
   const [idPayment, setIdPayment] = useState("");
@@ -61,7 +62,7 @@ export default function Checkout() {
       <Fixed>
         <Container maxW="6xl" mt={10} mb={10}>
           <Flex
-            bg="yellow.400"
+            bg={configs.template.checkout.bgBanner}
             p={3}
             shadow="md"
             borderRadius="md"
@@ -77,7 +78,10 @@ export default function Checkout() {
             gap="30px"
           >
             <Box borderWidth="1px" borderRadius="md" shadow="md" p={5}>
-              <Tabs variant="enclosed" colorScheme="yellow">
+              <Tabs
+                variant="enclosed"
+                colorScheme={configs.template.checkout.tabsColor}
+              >
                 <TabList>
                   <Tab fontSize={["xs", "sm", "sm", "md", "md"]}>
                     <Icon as={FaList} mr={3} /> Dados da Compra
@@ -177,7 +181,9 @@ export default function Checkout() {
                       </Flex>
                       <Divider mt={3} mb={3} />
 
-                      <RadioGroup colorScheme="yellow">
+                      <RadioGroup
+                        colorScheme={configs.template.checkout.radioColor}
+                      >
                         <Stack>
                           <Radio value="1">
                             <Box borderWidth="1px" p={3} borderRadius="md">
@@ -323,7 +329,9 @@ export default function Checkout() {
                       animateOpacity
                     >
                       <Box p={5} borderWidth="1px" mt={5} borderRadius="md">
-                        <RadioGroup colorScheme="yellow">
+                        <RadioGroup
+                          colorScheme={configs.template.checkout.radioColor}
+                        >
                           <Wrap align="center">
                             <WrapItem>
                               <Radio value={"1"}>
