@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,8 +22,8 @@ import {
   Flex,
   Divider,
   Text,
-  Radio,
-  RadioGroup,
+  Wrap,
+  WrapItem,
   Badge,
   Input,
   Stat,
@@ -37,6 +37,7 @@ import {
   useRadio,
   useRadioGroup,
   HStack,
+  Icon,
 } from "@chakra-ui/react";
 import {
   AiOutlineZoomIn,
@@ -46,6 +47,7 @@ import {
   AiOutlineCalculator,
   AiOutlineMinus,
   AiOutlinePlus,
+  AiOutlineCheck,
 } from "react-icons/ai";
 import { MdCheckCircle } from "react-icons/md";
 import HeaderApp from "../../components/headerApp";
@@ -54,6 +56,14 @@ import configs from "../../configs/configs";
 import BeautyStars from "beauty-stars";
 
 export default function Produto() {
+  const [qtd, setQtd] = useState(1);
+
+  useEffect(() => {
+    if (qtd < 1) {
+      setQtd(1);
+    }
+  }, [qtd]);
+
   const [imageShow, setImageShow] = useState(
     "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
   );
@@ -75,10 +85,6 @@ export default function Produto() {
           borderWidth="1px"
           borderRadius="md"
           boxShadow="md"
-          _checked={{
-            borderColor: "rgba(0,0,0,.5)",
-            borderWidth: "3px",
-          }}
           _focus={{
             boxShadow: "outline",
           }}
@@ -88,7 +94,20 @@ export default function Produto() {
           w="35px"
           h="35px"
           mt={2}
-        ></Box>
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          {input.checked === true ? (
+            <Icon
+              as={AiOutlineCheck}
+              fontSize="xl"
+              style={{ color: "#fff", mixBlendMode: "difference" }}
+            />
+          ) : (
+            ""
+          )}
+        </Box>
       </Box>
     );
   }
@@ -152,16 +171,18 @@ export default function Produto() {
     const group = getRootProps();
 
     return (
-      <HStack {...group} maxW="100%" wrap="wrap" justify="flex-start">
+      <Wrap {...group} spacing="15px">
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <RadioCard key={value} {...radio}>
-              {value}
-            </RadioCard>
+            <WrapItem>
+              <RadioCard key={value} {...radio}>
+                {value}
+              </RadioCard>
+            </WrapItem>
           );
         })}
-      </HStack>
+      </Wrap>
     );
   }
 
@@ -177,16 +198,18 @@ export default function Produto() {
     const group = getRootProps();
 
     return (
-      <HStack {...group} maxW="100%" wrap="wrap" justify="flex-start">
+      <Wrap {...group} spacing="15px">
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <RadioCardSize key={value} {...radio}>
-              {value}
-            </RadioCardSize>
+            <WrapItem>
+              <RadioCardSize key={value} {...radio}>
+                {value}
+              </RadioCardSize>
+            </WrapItem>
           );
         })}
-      </HStack>
+      </Wrap>
     );
   }
 
@@ -197,7 +220,7 @@ export default function Produto() {
       </ContainerNonFixed>
 
       <Fixed>
-        <Container maxW="6xl">
+        <Container maxW={["4xl", "4xl", "4xl", "4xl", "6xl"]}>
           <Box>
             <Breadcrumb mt={10} mb={10}>
               <BreadcrumbItem>
@@ -219,14 +242,15 @@ export default function Produto() {
           </Box>
 
           <Grid
-            templateColumns={"400px 1fr"}
+            templateColumns={["100%", "100%", "100%", "100%", "400px 1fr"]}
             justifyContent="center"
             gap={"30px"}
+            justifyItems="center"
           >
-            <Box w={"400px"}>
+            <Box w={["300px", "300px", "400px", "400px", "400px"]}>
               <Box
-                w="400px"
-                h="400px"
+                w={["300px", "300px", "400px", "400px", "400px"]}
+                h={["300px", "300px", "400px", "400px", "400px"]}
                 borderWidth="1px"
                 borderRadius="md"
                 overflow="hidden"
@@ -241,8 +265,8 @@ export default function Produto() {
                   aria-label="Search database"
                   icon={<AiOutlineZoomIn />}
                   pos="relative"
-                  mt={"-750px"}
-                  ml={"330px"}
+                  mt={["-570px", "-570px", "-750px", "-750px", "-750px"]}
+                  ml={["240px", "240px", "330px", "330px", "330px"]}
                   size="lg"
                   fontSize="35px"
                   variant="ghost"
@@ -251,13 +275,19 @@ export default function Produto() {
               </Box>
               <Grid
                 gap="10px"
-                templateColumns="repeat(5, 65px)"
+                templateColumns={[
+                  "repeat(5, 50px)",
+                  "repeat(5, 50px)",
+                  "repeat(5, 65px)",
+                  "repeat(5, 65px)",
+                  "repeat(5, 65px)",
+                ]}
                 justifyContent="center"
                 mt={"5px"}
               >
                 <Box
-                  w="65px"
-                  h="65px"
+                  w={["50px", "50px", "65px", "65px", "65px"]}
+                  h={["50px", "50px", "65px", "65px", "65px"]}
                   borderWidth="1px"
                   borderRadius="md"
                   overflow="hidden"
@@ -280,8 +310,8 @@ export default function Produto() {
                   />
                 </Box>
                 <Box
-                  w="65px"
-                  h="65px"
+                  w={["50px", "50px", "65px", "65px", "65px"]}
+                  h={["50px", "50px", "65px", "65px", "65px"]}
                   borderWidth="1px"
                   borderRadius="md"
                   overflow="hidden"
@@ -329,12 +359,18 @@ export default function Produto() {
               </Text>
 
               <Grid
-                templateColumns={"600px 1fr"}
+                templateColumns={[
+                  "100%",
+                  "100%",
+                  "1fr 130px",
+                  "1fr 130px",
+                  "1fr 130px",
+                ]}
                 gap="20px"
                 borderTopWidth="1px"
                 mt={5}
               >
-                <Box maxW="600px">
+                <Box maxW={["100%", "100%", "100%", "100%", "100%"]}>
                   <Text mt={3} color="gray.600" fontSize="sm">
                     Selecione uma cor:
                   </Text>
@@ -383,46 +419,57 @@ export default function Produto() {
                   </Text>
                 </Flex>
               </Flex>
-              <Flex justify="center" align="center">
-                <IconButton
-                  aria-label="Search database"
-                  icon={<AiOutlineMinus />}
-                />
-                <Input
-                  type="number"
-                  value={1}
-                  w="70px"
-                  _focus={{ borderColor: "yellow.400" }}
-                  isReadOnly
-                />
-                <IconButton
-                  aria-label="Search database"
-                  icon={<AiOutlinePlus />}
-                />
+              <Flex
+                justify="center"
+                align="center"
+                direction={["column", "column", "row", "row", "row"]}
+              >
+                <Flex mb={[5, 5, 0, 0, 0]}>
+                  <IconButton
+                    aria-label="Search database"
+                    icon={<AiOutlineMinus />}
+                    onClick={() => setQtd(qtd - 1)}
+                  />
+                  <Input
+                    type="number"
+                    value={qtd}
+                    w={["150px", "150px", "70px", "70px", "70px"]}
+                    _focus={{ borderColor: "yellow.400" }}
+                    isReadOnly
+                  />
+                  <IconButton
+                    aria-label="Search database"
+                    icon={<AiOutlinePlus />}
+                    onClick={() => setQtd(qtd + 1)}
+                  />
+                </Flex>
 
                 <Button
                   colorScheme={configs.template.product.btnCart}
                   leftIcon={<AiOutlineShoppingCart />}
                   ml={3}
+                  mb={[5, 5, 0, 0, 0]}
                 >
                   Adicionar ao Carrinho
                 </Button>
 
-                <Input
-                  type={"number"}
-                  placeholder="Seu CEP"
-                  _focus={{ borderColor: "yellow.400" }}
-                  w={"150px"}
-                  ml={3}
-                />
-                <Tooltip label="Calcular Frete" placement="top" hasArrow>
-                  <IconButton
-                    aria-label="Search database"
-                    icon={<AiOutlineCalculator />}
-                    fontSize="3xl"
-                    colorScheme="gray"
+                <Flex>
+                  <Input
+                    type={"number"}
+                    placeholder="Seu CEP"
+                    _focus={{ borderColor: "yellow.400" }}
+                    w={"150px"}
+                    ml={3}
                   />
-                </Tooltip>
+                  <Tooltip label="Calcular Frete" placement="top" hasArrow>
+                    <IconButton
+                      aria-label="Search database"
+                      icon={<AiOutlineCalculator />}
+                      fontSize="3xl"
+                      colorScheme="gray"
+                    />
+                  </Tooltip>
+                </Flex>
               </Flex>
             </Box>
           </Grid>
