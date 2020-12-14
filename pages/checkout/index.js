@@ -31,6 +31,7 @@ import {
   ModalCloseButton,
   RadioGroup,
   Radio,
+  Stack,
 } from "@chakra-ui/react";
 import { ContainerApp, ContainerNonFixed, Fixed } from "../../styles/styles";
 import HeaderApp from "../../components/headerApp";
@@ -50,6 +51,7 @@ export default function Checkout() {
   const [idPayment, setIdPayment] = useState("");
   const [modalCard, setModalCard] = useState(false);
   const [modalAddress, setModalAddress] = useState(false);
+  const [modalFinal, setModalFinal] = useState(false);
 
   return (
     <ContainerApp>
@@ -75,16 +77,12 @@ export default function Checkout() {
             gap="30px"
           >
             <Box borderWidth="1px" borderRadius="md" shadow="md" p={5}>
-              <Tabs
-                variant="enclosed"
-                colorScheme="yellow"
-                size={["xs", "xs", "xs", "xs", "xs"]}
-              >
+              <Tabs variant="enclosed" colorScheme="yellow">
                 <TabList>
-                  <Tab>
+                  <Tab fontSize={["xs", "sm", "sm", "md", "md"]}>
                     <Icon as={FaList} mr={3} /> Dados da Compra
                   </Tab>
-                  <Tab>
+                  <Tab fontSize={["xs", "sm", "sm", "md", "md"]}>
                     <Icon as={FaCreditCard} mr={3} /> Forma de Pagamento
                   </Tab>
                 </TabList>
@@ -179,86 +177,94 @@ export default function Checkout() {
                       </Flex>
                       <Divider mt={3} mb={3} />
 
-                      <Grid
-                        templateColumns={[
-                          "100%",
-                          "100%",
-                          "1fr 100px",
-                          "1fr 100px",
-                          "1fr 100px",
-                        ]}
-                        gap="20px"
-                      >
-                        <Box>
-                          <Text fontSize="sm">Logradouro</Text>
-                          <Input
-                            type="number"
-                            value={""}
-                            _focus={{ borderColor: "yellow.400" }}
-                            isReadOnly
-                          />
-                        </Box>
-                        <Box>
-                          <Text fontSize="sm">Número</Text>
-                          <Input
-                            type="number"
-                            value={""}
-                            _focus={{ borderColor: "yellow.400" }}
-                            isReadOnly
-                          />
-                        </Box>
-                      </Grid>
-                      <Text fontSize="sm" mt={3}>
-                        Complemento
-                      </Text>
-                      <Input
-                        type="number"
-                        value={""}
-                        _focus={{ borderColor: "yellow.400" }}
-                        isReadOnly
-                      />
+                      <RadioGroup colorScheme="yellow">
+                        <Stack>
+                          <Radio value="1">
+                            <Box borderWidth="1px" p={3} borderRadius="md">
+                              <Grid
+                                templateColumns={[
+                                  "100%",
+                                  "100%",
+                                  "1fr 100px",
+                                  "1fr 100px",
+                                  "1fr 100px",
+                                ]}
+                                gap="20px"
+                              >
+                                <Box>
+                                  <Text fontSize="sm">Logradouro</Text>
+                                  <Input
+                                    type="number"
+                                    value={""}
+                                    _focus={{ borderColor: "yellow.400" }}
+                                    isReadOnly
+                                  />
+                                </Box>
+                                <Box>
+                                  <Text fontSize="sm">Número</Text>
+                                  <Input
+                                    type="number"
+                                    value={""}
+                                    _focus={{ borderColor: "yellow.400" }}
+                                    isReadOnly
+                                  />
+                                </Box>
+                              </Grid>
+                              <Text fontSize="sm" mt={3}>
+                                Complemento
+                              </Text>
+                              <Input
+                                type="number"
+                                value={""}
+                                _focus={{ borderColor: "yellow.400" }}
+                                isReadOnly
+                              />
 
-                      <Grid
-                        templateColumns={[
-                          "100%",
-                          "100%",
-                          "1fr 1fr 100px",
-                          "1fr 1fr 100px",
-                          "1fr 1fr 100px",
-                        ]}
-                        gap="20px"
-                        mt={3}
-                      >
-                        <Box>
-                          <Text fontSize="sm">CEP</Text>
-                          <Input
-                            type="number"
-                            value={""}
-                            _focus={{ borderColor: "yellow.400" }}
-                            isReadOnly
-                          />
-                        </Box>
-                        <Box>
-                          <Text fontSize="sm">Cidade</Text>
-                          <Input
-                            type="number"
-                            value={""}
-                            _focus={{ borderColor: "yellow.400" }}
-                            isReadOnly
-                          />
-                        </Box>
-                        <Box>
-                          <Text fontSize="sm">Estado</Text>
-                          <Select
-                            placeholder="UF"
-                            focusBorderColor="yellow.400"
-                          >
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                          </Select>
-                        </Box>
-                      </Grid>
+                              <Grid
+                                templateColumns={[
+                                  "100%",
+                                  "100%",
+                                  "1fr 1fr 100px",
+                                  "1fr 1fr 100px",
+                                  "1fr 1fr 100px",
+                                ]}
+                                gap="20px"
+                                mt={3}
+                              >
+                                <Box>
+                                  <Text fontSize="sm">CEP</Text>
+                                  <Input
+                                    type="number"
+                                    value={""}
+                                    _focus={{ borderColor: "yellow.400" }}
+                                    isReadOnly
+                                  />
+                                </Box>
+                                <Box>
+                                  <Text fontSize="sm">Cidade</Text>
+                                  <Input
+                                    type="number"
+                                    value={""}
+                                    _focus={{ borderColor: "yellow.400" }}
+                                    isReadOnly
+                                  />
+                                </Box>
+                                <Box>
+                                  <Text fontSize="sm">Estado</Text>
+                                  <Select
+                                    placeholder="UF"
+                                    focusBorderColor="yellow.400"
+                                  >
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                    <option value="option3">Option 3</option>
+                                  </Select>
+                                </Box>
+                              </Grid>
+                            </Box>
+                          </Radio>
+                        </Stack>
+                      </RadioGroup>
 
                       <Divider mt={5} mb={5} />
 
@@ -475,6 +481,7 @@ export default function Checkout() {
                 leftIcon={<AiOutlineCheck />}
                 isFullWidth
                 mt={10}
+                onClick={() => setModalFinal(true)}
               >
                 Finalizar
               </Button>
@@ -486,7 +493,12 @@ export default function Checkout() {
         <FooterApp />
       </ContainerNonFixed>
 
-      <Modal isOpen={modalCard} size="xl" onClose={() => setModalCard(false)}>
+      <Modal
+        isOpen={modalCard}
+        size="xl"
+        onClose={() => setModalCard(false)}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Cadastrar Cartão de Crédito</ModalHeader>
@@ -573,13 +585,23 @@ export default function Checkout() {
         isOpen={modalAddress}
         size="xl"
         onClose={() => setModalAddress(false)}
+        isCentered
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Cadastrar Endereço de Entrega</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Grid templateColumns="1fr 100px" gap="20px">
+            <Grid
+              templateColumns={[
+                "100%",
+                "100%",
+                "1fr 100px",
+                "1fr 100px",
+                "1fr 100px",
+              ]}
+              gap="20px"
+            >
               <Box>
                 <Text fontSize="sm">Logradouro</Text>
                 <Input
@@ -609,7 +631,17 @@ export default function Checkout() {
               isReadOnly
             />
 
-            <Grid templateColumns="1fr 1fr 100px" gap="20px" mt={3}>
+            <Grid
+              templateColumns={[
+                "100%",
+                "100%",
+                "1fr 1fr 100px",
+                "1fr 1fr 100px",
+                "1fr 1fr 100px",
+              ]}
+              gap="20px"
+              mt={3}
+            >
               <Box>
                 <Text fontSize="sm">CEP</Text>
                 <Input
@@ -646,6 +678,133 @@ export default function Checkout() {
               colorScheme="yellow"
             >
               Cadastrar Endereço
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal
+        isOpen={modalFinal}
+        size="xl"
+        onClose={() => setModalFinal(false)}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Resumo da Compra</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Box borderWidth="1px" p={3} borderRadius="md">
+              <Flex align="center" mb={3}>
+                <Icon as={FiMapPin} mr={5} />
+                <Text fontSize="md" fontWeight="700">
+                  Endereço de Entrega
+                </Text>
+              </Flex>
+              <Divider mb={3} />
+              <Grid
+                templateColumns={[
+                  "100%",
+                  "100%",
+                  "1fr 100px",
+                  "1fr 100px",
+                  "1fr 100px",
+                ]}
+                gap="20px"
+              >
+                <Box>
+                  <Text fontSize="sm">Logradouro</Text>
+                  <Input
+                    type="number"
+                    value={""}
+                    _focus={{ borderColor: "yellow.400" }}
+                    isReadOnly
+                  />
+                </Box>
+                <Box>
+                  <Text fontSize="sm">Número</Text>
+                  <Input
+                    type="number"
+                    value={""}
+                    _focus={{ borderColor: "yellow.400" }}
+                    isReadOnly
+                  />
+                </Box>
+              </Grid>
+              <Text fontSize="sm" mt={3}>
+                Complemento
+              </Text>
+              <Input
+                type="number"
+                value={""}
+                _focus={{ borderColor: "yellow.400" }}
+                isReadOnly
+              />
+
+              <Grid
+                templateColumns={[
+                  "100%",
+                  "100%",
+                  "1fr 1fr 100px",
+                  "1fr 1fr 100px",
+                  "1fr 1fr 100px",
+                ]}
+                gap="20px"
+                mt={3}
+              >
+                <Box>
+                  <Text fontSize="sm">CEP</Text>
+                  <Input
+                    type="number"
+                    value={""}
+                    _focus={{ borderColor: "yellow.400" }}
+                    isReadOnly
+                  />
+                </Box>
+                <Box>
+                  <Text fontSize="sm">Cidade</Text>
+                  <Input
+                    type="number"
+                    value={""}
+                    _focus={{ borderColor: "yellow.400" }}
+                    isReadOnly
+                  />
+                </Box>
+                <Box>
+                  <Text fontSize="sm">Estado</Text>
+                  <Select placeholder="UF" focusBorderColor="yellow.400">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                  </Select>
+                </Box>
+              </Grid>
+            </Box>
+
+            <Box borderWidth="1px" p={3} borderRadius="md" mt={5}>
+              <Flex align="center" mb={3}>
+                <Icon as={FaCreditCard} mr={5} />
+                <Text fontSize="md" fontWeight="700">
+                  Forma de Pagamento
+                </Text>
+              </Flex>
+              <Divider mb={3} />
+
+              <Text>
+                <strong>Cartão de Crédito</strong> em <strong>6x</strong> de{" "}
+                <strong>R$ 120,00</strong>
+              </Text>
+            </Box>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              variant="solid"
+              leftIcon={<AiOutlineCheck />}
+              colorScheme="green"
+              size="lg"
+            >
+              Finalizar
             </Button>
           </ModalFooter>
         </ModalContent>

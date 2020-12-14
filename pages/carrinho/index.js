@@ -16,7 +16,6 @@ import {
   Icon,
   Tooltip,
   Button,
-  HStack,
 } from "@chakra-ui/react";
 import { ContainerApp, ContainerNonFixed, Fixed } from "../../styles/styles";
 import HeaderApp from "../../components/headerApp";
