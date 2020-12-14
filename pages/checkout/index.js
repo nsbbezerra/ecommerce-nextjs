@@ -70,7 +70,9 @@ export default function Checkout() {
             align="center"
           >
             <Icon as={AiOutlineCheck} fontSize="2xl" mr={10} />
-            <Heading size="md">Finalizar Compra</Heading>
+            <Heading size="md" color={configs.template.checkout.colorBanner}>
+              Finalizar Compra
+            </Heading>
           </Flex>
 
           <Grid

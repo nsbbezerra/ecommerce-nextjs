@@ -56,7 +56,9 @@ export default function Carrinho() {
             align="center"
           >
             <Icon as={AiOutlineShoppingCart} fontSize="2xl" mr={10} />
-            <Heading size="md">Meu Carrinho</Heading>
+            <Heading size="md" color={configs.template.chart.colorBanner}>
+              Meu Carrinho
+            </Heading>
           </Flex>
 
           {/** ITENS DO CARRINHO */}

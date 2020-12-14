@@ -88,10 +88,12 @@ const configs = {
     },
     chart: {
       bgBanner: "yellow.400",
+      colorBanner: "gray.900",
       btnCalc: "yellow",
     },
     checkout: {
       bgBanner: "yellow.400",
+      colorBanner: "gray.900",
       tabsColor: "yellow",
       radioColor: "yellow",
     },
