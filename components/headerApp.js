@@ -25,6 +25,7 @@ import {
   MenuDivider,
   Icon,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import {
   AiOutlineUser,
@@ -36,18 +37,19 @@ import {
   AiOutlineExpandAlt,
   AiOutlineLogin,
   AiOutlineSave,
+  AiOutlineIdcard,
 } from "react-icons/ai";
 import { BsBag, BsBagFill } from "react-icons/bs";
 import { FiMapPin } from "react-icons/fi";
+import { FaTimes } from "react-icons/fa";
 
 import configs from "../configs/configs";
 
 export default function Home() {
-  const router = useRouter();
-
   const [display, setDisplay] = useState(0);
   const [position, setPosition] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoged, setIsLoged] = useState(true);
 
   useEffect(() => {
     if (position < 132) {
@@ -240,12 +242,33 @@ export default function Home() {
                   <AiOutlineUser />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>
-                    <Icon as={AiOutlineLogin} mr={5} /> Login
-                  </MenuItem>
-                  <MenuItem>
-                    <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
-                  </MenuItem>
+                  {isLoged ? (
+                    <>
+                      <Link href="/meusdados" passHref>
+                        <a>
+                          <MenuItem>
+                            <Icon as={AiOutlineIdcard} mr={5} /> Meus Dados
+                          </MenuItem>
+                        </a>
+                      </Link>
+                      <Link href="/minhascompras" passHref>
+                        <a>
+                          <MenuItem>
+                            <Icon as={BsBag} mr={5} /> Minhas Compras
+                          </MenuItem>
+                        </a>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem>
+                        <Icon as={AiOutlineLogin} mr={5} /> Login
+                      </MenuItem>
+                      <MenuItem>
+                        <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                      </MenuItem>
+                    </>
+                  )}
                 </MenuList>
               </Menu>
               <Divider
@@ -297,13 +320,24 @@ export default function Home() {
                         R$ 250,00
                       </Text>
                     </Box>
+                    <Flex>
+                      <Tooltip label="Remover Item" placement="top" hasArrow>
+                        <IconButton
+                          colorScheme="red"
+                          aria-label="Search database"
+                          icon={<FaTimes />}
+                          size="md"
+                          variant="link"
+                        />
+                      </Tooltip>
+                    </Flex>
                   </MenuItem>
                   <MenuDivider />
                   <MenuItem>
                     <Link href="/listadedesejos" passHref>
                       <a style={{ width: "100%" }}>
                         <Button isFullWidth variant="link" fontSize="sm">
-                          Ver minha lista de desejo
+                          Ver minha lista de desejos
                         </Button>
                       </a>
                     </Link>
@@ -361,6 +395,17 @@ export default function Home() {
                         R$ 250,00
                       </Text>
                     </Box>
+                    <Flex>
+                      <Tooltip label="Remover Item" placement="top" hasArrow>
+                        <IconButton
+                          colorScheme="red"
+                          aria-label="Search database"
+                          icon={<FaTimes />}
+                          size="md"
+                          variant="link"
+                        />
+                      </Tooltip>
+                    </Flex>
                   </MenuItem>
                   <MenuDivider />
                   <MenuItem>
@@ -614,12 +659,33 @@ export default function Home() {
                 <AiOutlineUser />
               </MenuButton>
               <MenuList>
-                <MenuItem>
-                  <Icon as={AiOutlineLogin} mr={5} /> Login
-                </MenuItem>
-                <MenuItem>
-                  <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
-                </MenuItem>
+                {isLoged ? (
+                  <>
+                    <Link href="/meusdados" passHref>
+                      <a>
+                        <MenuItem>
+                          <Icon as={AiOutlineIdcard} mr={5} /> Meus Dados
+                        </MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/minhascompras" passHref>
+                      <a>
+                        <MenuItem>
+                          <Icon as={BsBag} mr={5} /> Minhas Compras
+                        </MenuItem>
+                      </a>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <MenuItem>
+                      <Icon as={AiOutlineLogin} mr={5} /> Login
+                    </MenuItem>
+                    <MenuItem>
+                      <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                    </MenuItem>
+                  </>
+                )}
               </MenuList>
             </Menu>
             <Divider
@@ -671,13 +737,24 @@ export default function Home() {
                       R$ 250,00
                     </Text>
                   </Box>
+                  <Flex>
+                    <Tooltip label="Remover Item" placement="top" hasArrow>
+                      <IconButton
+                        colorScheme="red"
+                        aria-label="Search database"
+                        icon={<FaTimes />}
+                        size="md"
+                        variant="link"
+                      />
+                    </Tooltip>
+                  </Flex>
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
                   <Link passHref href="/listadedesejos">
                     <a style={{ width: "100%" }}>
                       <Button isFullWidth variant="link" fontSize="sm">
-                        Ver minha lista de desejo
+                        Ver minha lista de desejos
                       </Button>
                     </a>
                   </Link>
@@ -735,6 +812,17 @@ export default function Home() {
                       R$ 250,00
                     </Text>
                   </Box>
+                  <Flex>
+                    <Tooltip label="Remover Item" placement="top" hasArrow>
+                      <IconButton
+                        colorScheme="red"
+                        aria-label="Search database"
+                        icon={<FaTimes />}
+                        size="md"
+                        variant="link"
+                      />
+                    </Tooltip>
+                  </Flex>
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
