@@ -18,6 +18,13 @@ import {
   DrawerCloseButton,
   Box,
   Grid,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Icon,
+  Text,
 } from "@chakra-ui/react";
 import {
   AiOutlineUser,
@@ -27,6 +34,8 @@ import {
   AiOutlineTags,
   AiOutlineInfoCircle,
   AiOutlineExpandAlt,
+  AiOutlineLogin,
+  AiOutlineSave,
 } from "react-icons/ai";
 import { BsBag, BsBagFill } from "react-icons/bs";
 import { FiMapPin } from "react-icons/fi";
@@ -220,26 +229,88 @@ export default function Home() {
                   </Button>
                 </a>
               </Link>
-              <IconButton
-                variant="link"
-                color={configs.template.index.fixedPanel.color}
-                icon={<AiOutlineUser />}
-                size="md"
-                fontSize={30}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={30}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <AiOutlineUser />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem>
+                    <Icon as={AiOutlineLogin} mr={5} /> Login
+                  </MenuItem>
+                  <MenuItem>
+                    <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                  </MenuItem>
+                </MenuList>
+              </Menu>
               <Divider
                 orientation="vertical"
                 borderColor={configs.template.index.fixedPanel.bg}
                 mr={1}
                 ml={1}
               />
-              <IconButton
-                variant="link"
-                color={configs.template.index.fixedPanel.color}
-                icon={<AiOutlineHeart />}
-                size="md"
-                fontSize={30}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={30}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <AiOutlineHeart />
+                </MenuButton>
+                <MenuList w="350px">
+                  <MenuItem>
+                    <Box
+                      w="40px"
+                      h="40px"
+                      borderRadius="50%"
+                      overflow="hidden"
+                      mr={5}
+                    >
+                      <Image
+                        src={
+                          "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                        }
+                        width={65}
+                        height={65}
+                        layout="intrinsic"
+                      />
+                    </Box>{" "}
+                    <Box>
+                      <Text
+                        noOfLines={1}
+                        maxW="250px"
+                        fontSize="md"
+                        fontWeight="700"
+                      >
+                        Men Glasses Men GlassesMen GlassesMen GlassesMen
+                        GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                        Glasses
+                      </Text>
+                      <Text noOfLines={1} maxW="250px" fontSize="sm">
+                        R$ 250,00
+                      </Text>
+                    </Box>
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem>
+                    <Link href="/listadedesejos" passHref>
+                      <a style={{ width: "100%" }}>
+                        <Button isFullWidth variant="link" fontSize="sm">
+                          Ver minha lista de desejo
+                        </Button>
+                      </a>
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+
               <Label right={"88px"}>2</Label>
               <Divider
                 orientation="vertical"
@@ -247,13 +318,63 @@ export default function Home() {
                 mr={1}
                 ml={1}
               />
-              <IconButton
-                variant="link"
-                icon={<BsBag />}
-                size="md"
-                fontSize={30}
-                color={configs.template.index.fixedPanel.color}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={28}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <BsBag />
+                </MenuButton>
+                <MenuList w="350px">
+                  <MenuItem>
+                    <Box
+                      w="40px"
+                      h="40px"
+                      borderRadius="50%"
+                      overflow="hidden"
+                      mr={5}
+                    >
+                      <Image
+                        src={
+                          "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                        }
+                        width={65}
+                        height={65}
+                        layout="intrinsic"
+                      />
+                    </Box>{" "}
+                    <Box>
+                      <Text
+                        noOfLines={1}
+                        maxW="250px"
+                        fontSize="md"
+                        fontWeight="700"
+                      >
+                        Men Glasses Men GlassesMen GlassesMen GlassesMen
+                        GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                        Glasses
+                      </Text>
+                      <Text noOfLines={1} maxW="250px" fontSize="sm">
+                        R$ 250,00
+                      </Text>
+                    </Box>
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem>
+                    <Link href="/carrinho" passHref>
+                      <a style={{ width: "100%" }}>
+                        <Button isFullWidth variant="link" fontSize="sm">
+                          Ir para o carrinho
+                        </Button>
+                      </a>
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+
               <Label right={"40px"}>1</Label>
             </Flex>
             <Flex display={["none", "none", "flex", "flex", "none"]}>
@@ -482,26 +603,88 @@ export default function Home() {
                 </Button>
               </a>
             </Link>
-            <IconButton
-              variant="link"
-              color={configs.template.index.fixedPanel.color}
-              icon={<AiOutlineUser />}
-              size="md"
-              fontSize={30}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={30}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <AiOutlineUser />
+              </MenuButton>
+              <MenuList>
+                <MenuItem>
+                  <Icon as={AiOutlineLogin} mr={5} /> Login
+                </MenuItem>
+                <MenuItem>
+                  <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                </MenuItem>
+              </MenuList>
+            </Menu>
             <Divider
               orientation="vertical"
               borderColor={configs.template.index.fixedPanel.bg}
               mr={1}
               ml={1}
             />
-            <IconButton
-              variant="link"
-              color={configs.template.index.fixedPanel.color}
-              icon={<AiOutlineHeart />}
-              size="md"
-              fontSize={30}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={30}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <AiOutlineHeart />
+              </MenuButton>
+              <MenuList w="350px">
+                <MenuItem>
+                  <Box
+                    w="40px"
+                    h="40px"
+                    borderRadius="50%"
+                    overflow="hidden"
+                    mr={5}
+                  >
+                    <Image
+                      src={
+                        "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                      }
+                      width={65}
+                      height={65}
+                      layout="intrinsic"
+                    />
+                  </Box>{" "}
+                  <Box>
+                    <Text
+                      noOfLines={1}
+                      maxW="250px"
+                      fontSize="md"
+                      fontWeight="700"
+                    >
+                      Men Glasses Men GlassesMen GlassesMen GlassesMen
+                      GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                      Glasses
+                    </Text>
+                    <Text noOfLines={1} maxW="250px" fontSize="sm">
+                      R$ 250,00
+                    </Text>
+                  </Box>
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem>
+                  <Link passHref href="/listadedesejos">
+                    <a style={{ width: "100%" }}>
+                      <Button isFullWidth variant="link" fontSize="sm">
+                        Ver minha lista de desejo
+                      </Button>
+                    </a>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Label right={"88px"}>2</Label>
             <Divider
               orientation="vertical"
@@ -509,13 +692,63 @@ export default function Home() {
               mr={1}
               ml={1}
             />
-            <IconButton
-              variant="link"
-              icon={<BsBag />}
-              size="md"
-              fontSize={30}
-              color={configs.template.index.fixedPanel.color}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={28}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <BsBag />
+              </MenuButton>
+              <MenuList w="350px">
+                <MenuItem>
+                  <Box
+                    w="40px"
+                    h="40px"
+                    borderRadius="50%"
+                    overflow="hidden"
+                    mr={5}
+                  >
+                    <Image
+                      src={
+                        "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                      }
+                      width={65}
+                      height={65}
+                      layout="intrinsic"
+                    />
+                  </Box>{" "}
+                  <Box>
+                    <Text
+                      noOfLines={1}
+                      maxW="250px"
+                      fontSize="md"
+                      fontWeight="700"
+                    >
+                      Men Glasses Men GlassesMen GlassesMen GlassesMen
+                      GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                      Glasses
+                    </Text>
+                    <Text noOfLines={1} maxW="250px" fontSize="sm">
+                      R$ 250,00
+                    </Text>
+                  </Box>
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem>
+                  <Link href="/carrinho" passHref>
+                    <a style={{ width: "100%" }}>
+                      <Button isFullWidth variant="link" fontSize="sm">
+                        Ir para o carrinho
+                      </Button>
+                    </a>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Label right={"40px"}>1</Label>
           </Flex>
           <Flex display={["none", "none", "flex", "flex", "none"]}>
