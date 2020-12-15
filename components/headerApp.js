@@ -102,11 +102,7 @@ export default function Home() {
                 objectPosition="50% 50%"
               />
             </Box>
-            <Box
-              w="130px"
-              h="30px"
-              display={["none", "none", "block", "block", "block"]}
-            >
+            <Box w={["80px", "130px", "130px", "130px", "130px"]} h="30px">
               <Image
                 src="/img/name-slug.png"
                 width={130}
@@ -320,17 +316,13 @@ export default function Home() {
                         R$ 250,00
                       </Text>
                     </Box>
-                    <Flex>
-                      <Tooltip label="Remover Item" placement="top" hasArrow>
-                        <IconButton
-                          colorScheme="red"
-                          aria-label="Search database"
-                          icon={<FaTimes />}
-                          size="md"
-                          variant="link"
-                        />
-                      </Tooltip>
-                    </Flex>
+                    <IconButton
+                      colorScheme="red"
+                      aria-label="Search database"
+                      icon={<FaTimes />}
+                      size="md"
+                      variant="link"
+                    />
                   </MenuItem>
                   <MenuDivider />
                   <MenuItem>
@@ -395,17 +387,13 @@ export default function Home() {
                         R$ 250,00
                       </Text>
                     </Box>
-                    <Flex>
-                      <Tooltip label="Remover Item" placement="top" hasArrow>
-                        <IconButton
-                          colorScheme="red"
-                          aria-label="Search database"
-                          icon={<FaTimes />}
-                          size="md"
-                          variant="link"
-                        />
-                      </Tooltip>
-                    </Flex>
+                    <IconButton
+                      colorScheme="red"
+                      aria-label="Search database"
+                      icon={<FaTimes />}
+                      size="md"
+                      variant="link"
+                    />
                   </MenuItem>
                   <MenuDivider />
                   <MenuItem>
@@ -422,27 +410,120 @@ export default function Home() {
 
               <Label right={"40px"}>1</Label>
             </Flex>
+
+            {/** TABLET DISPLAY */}
+
             <Flex display={["none", "none", "flex", "flex", "none"]}>
-              <IconButton
-                variant="link"
-                color={configs.template.index.fixedPanel.color}
-                icon={<AiOutlineUser />}
-                size="md"
-                fontSize={30}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={30}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <AiOutlineUser />
+                </MenuButton>
+                <MenuList>
+                  {isLoged ? (
+                    <>
+                      <Link href="/meusdados" passHref>
+                        <a>
+                          <MenuItem>
+                            <Icon as={AiOutlineIdcard} mr={5} /> Meus Dados
+                          </MenuItem>
+                        </a>
+                      </Link>
+                      <Link href="/minhascompras" passHref>
+                        <a>
+                          <MenuItem>
+                            <Icon as={BsBag} mr={5} /> Minhas Compras
+                          </MenuItem>
+                        </a>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem>
+                        <Icon as={AiOutlineLogin} mr={5} /> Login
+                      </MenuItem>
+                      <MenuItem>
+                        <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                      </MenuItem>
+                    </>
+                  )}
+                </MenuList>
+              </Menu>
               <Divider
                 orientation="vertical"
                 borderColor={configs.template.index.fixedPanel.bg}
                 mr={1}
                 ml={1}
               />
-              <IconButton
-                variant="link"
-                color={configs.template.index.fixedPanel.color}
-                icon={<AiOutlineHeart />}
-                size="md"
-                fontSize={30}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={30}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <AiOutlineHeart />
+                </MenuButton>
+                <MenuList w="350px">
+                  <MenuItem>
+                    <Box
+                      w="40px"
+                      h="40px"
+                      borderRadius="50%"
+                      overflow="hidden"
+                      mr={5}
+                    >
+                      <Image
+                        src={
+                          "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                        }
+                        width={65}
+                        height={65}
+                        layout="intrinsic"
+                      />
+                    </Box>{" "}
+                    <Box>
+                      <Text
+                        noOfLines={1}
+                        maxW="250px"
+                        fontSize="md"
+                        fontWeight="700"
+                      >
+                        Men Glasses Men GlassesMen GlassesMen GlassesMen
+                        GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                        Glasses
+                      </Text>
+                      <Text noOfLines={1} maxW="250px" fontSize="sm">
+                        R$ 250,00
+                      </Text>
+                    </Box>
+                    <IconButton
+                      colorScheme="red"
+                      aria-label="Search database"
+                      icon={<FaTimes />}
+                      size="md"
+                      variant="link"
+                    />
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem>
+                    <Link href="/listadedesejos" passHref>
+                      <a style={{ width: "100%" }}>
+                        <Button isFullWidth variant="link" fontSize="sm">
+                          Ver minha lista de desejos
+                        </Button>
+                      </a>
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+
               <Label right={"170px"}>2</Label>
               <Divider
                 orientation="vertical"
@@ -450,13 +531,70 @@ export default function Home() {
                 mr={1}
                 ml={1}
               />
-              <IconButton
-                variant="link"
-                icon={<BsBag />}
-                size="md"
-                fontSize={30}
-                color={configs.template.index.fixedPanel.color}
-              />
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  fontSize={28}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                  color={configs.template.index.fixedPanel.color}
+                >
+                  <BsBag />
+                </MenuButton>
+                <MenuList w="350px">
+                  <MenuItem>
+                    <Box
+                      w="40px"
+                      h="40px"
+                      borderRadius="50%"
+                      overflow="hidden"
+                      mr={5}
+                    >
+                      <Image
+                        src={
+                          "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                        }
+                        width={65}
+                        height={65}
+                        layout="intrinsic"
+                      />
+                    </Box>{" "}
+                    <Box>
+                      <Text
+                        noOfLines={1}
+                        maxW="250px"
+                        fontSize="md"
+                        fontWeight="700"
+                      >
+                        Men Glasses Men GlassesMen GlassesMen GlassesMen
+                        GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                        Glasses
+                      </Text>
+                      <Text noOfLines={1} maxW="250px" fontSize="sm">
+                        R$ 250,00
+                      </Text>
+                    </Box>
+                    <IconButton
+                      colorScheme="red"
+                      aria-label="Search database"
+                      icon={<FaTimes />}
+                      size="md"
+                      variant="link"
+                    />
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem>
+                    <Link href="/carrinho" passHref>
+                      <a style={{ width: "100%" }}>
+                        <Button isFullWidth variant="link" fontSize="sm">
+                          Ir para o carrinho
+                        </Button>
+                      </a>
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+
               <Label right={"120px"}>1</Label>
               <IconButton
                 variant="solid"
@@ -468,15 +606,8 @@ export default function Home() {
                 ml={10}
               />
             </Flex>
+
             <Flex display={["flex", "flex", "none", "none", "none"]}>
-              <IconButton
-                variant="link"
-                icon={<BsBag />}
-                size="md"
-                fontSize={30}
-                color={configs.template.index.fixedPanel.color}
-              />
-              <Label right={"120px"}>1</Label>
               <IconButton
                 variant="solid"
                 icon={<AiOutlineMenu />}
@@ -519,11 +650,7 @@ export default function Home() {
               layout="fixed"
             />
           </Box>
-          <Box
-            w="130px"
-            h="30px"
-            display={["none", "none", "block", "block", "block"]}
-          >
+          <Box w={["80px", "130px", "130px", "130px", "130px"]} h="30px">
             <Image
               src="/img/name-slug.png"
               width={130}
@@ -534,6 +661,8 @@ export default function Home() {
           </Box>
         </Flex>
         <Flex justify="flex-end">
+          {/** DESKTOP DISPLAY */}
+
           <Flex display={["none", "none", "none", "none", "flex"]}>
             <Link href="/" passHref>
               <a>
@@ -737,17 +866,13 @@ export default function Home() {
                       R$ 250,00
                     </Text>
                   </Box>
-                  <Flex>
-                    <Tooltip label="Remover Item" placement="top" hasArrow>
-                      <IconButton
-                        colorScheme="red"
-                        aria-label="Search database"
-                        icon={<FaTimes />}
-                        size="md"
-                        variant="link"
-                      />
-                    </Tooltip>
-                  </Flex>
+                  <IconButton
+                    colorScheme="red"
+                    aria-label="Search database"
+                    icon={<FaTimes />}
+                    size="md"
+                    variant="link"
+                  />
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
@@ -812,17 +937,13 @@ export default function Home() {
                       R$ 250,00
                     </Text>
                   </Box>
-                  <Flex>
-                    <Tooltip label="Remover Item" placement="top" hasArrow>
-                      <IconButton
-                        colorScheme="red"
-                        aria-label="Search database"
-                        icon={<FaTimes />}
-                        size="md"
-                        variant="link"
-                      />
-                    </Tooltip>
-                  </Flex>
+                  <IconButton
+                    colorScheme="red"
+                    aria-label="Search database"
+                    icon={<FaTimes />}
+                    size="md"
+                    variant="link"
+                  />
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
@@ -839,27 +960,120 @@ export default function Home() {
 
             <Label right={"40px"}>1</Label>
           </Flex>
+
+          {/** TABLET DISPLAY */}
+
           <Flex display={["none", "none", "flex", "flex", "none"]}>
-            <IconButton
-              variant="link"
-              color={configs.template.index.fixedPanel.color}
-              icon={<AiOutlineUser />}
-              size="md"
-              fontSize={30}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={30}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <AiOutlineUser />
+              </MenuButton>
+              <MenuList>
+                {isLoged ? (
+                  <>
+                    <Link href="/meusdados" passHref>
+                      <a>
+                        <MenuItem>
+                          <Icon as={AiOutlineIdcard} mr={5} /> Meus Dados
+                        </MenuItem>
+                      </a>
+                    </Link>
+                    <Link href="/minhascompras" passHref>
+                      <a>
+                        <MenuItem>
+                          <Icon as={BsBag} mr={5} /> Minhas Compras
+                        </MenuItem>
+                      </a>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <MenuItem>
+                      <Icon as={AiOutlineLogin} mr={5} /> Login
+                    </MenuItem>
+                    <MenuItem>
+                      <Icon as={AiOutlineSave} mr={5} /> Cadastre-se
+                    </MenuItem>
+                  </>
+                )}
+              </MenuList>
+            </Menu>
             <Divider
               orientation="vertical"
               borderColor={configs.template.index.fixedPanel.bg}
               mr={1}
               ml={1}
             />
-            <IconButton
-              variant="link"
-              color={configs.template.index.fixedPanel.color}
-              icon={<AiOutlineHeart />}
-              size="md"
-              fontSize={30}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={30}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <AiOutlineHeart />
+              </MenuButton>
+              <MenuList w="350px">
+                <MenuItem>
+                  <Box
+                    w="40px"
+                    h="40px"
+                    borderRadius="50%"
+                    overflow="hidden"
+                    mr={5}
+                  >
+                    <Image
+                      src={
+                        "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                      }
+                      width={65}
+                      height={65}
+                      layout="intrinsic"
+                    />
+                  </Box>{" "}
+                  <Box>
+                    <Text
+                      noOfLines={1}
+                      maxW="250px"
+                      fontSize="md"
+                      fontWeight="700"
+                    >
+                      Men Glasses Men GlassesMen GlassesMen GlassesMen
+                      GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                      Glasses
+                    </Text>
+                    <Text noOfLines={1} maxW="250px" fontSize="sm">
+                      R$ 250,00
+                    </Text>
+                  </Box>
+                  <IconButton
+                    colorScheme="red"
+                    aria-label="Search database"
+                    icon={<FaTimes />}
+                    size="md"
+                    variant="link"
+                  />
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem>
+                  <Link passHref href="/listadedesejos">
+                    <a style={{ width: "100%" }}>
+                      <Button isFullWidth variant="link" fontSize="sm">
+                        Ver minha lista de desejos
+                      </Button>
+                    </a>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Label right={"170px"}>2</Label>
             <Divider
               orientation="vertical"
@@ -867,13 +1081,70 @@ export default function Home() {
               mr={1}
               ml={1}
             />
-            <IconButton
-              variant="link"
-              icon={<BsBag />}
-              size="md"
-              fontSize={30}
-              color={configs.template.index.fixedPanel.color}
-            />
+            <Menu>
+              <MenuButton
+                as={Button}
+                fontSize={28}
+                variant="link"
+                _focus={{ outline: "none" }}
+                color={configs.template.index.fixedPanel.color}
+              >
+                <BsBag />
+              </MenuButton>
+              <MenuList w="350px">
+                <MenuItem>
+                  <Box
+                    w="40px"
+                    h="40px"
+                    borderRadius="50%"
+                    overflow="hidden"
+                    mr={5}
+                  >
+                    <Image
+                      src={
+                        "https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/5ca921a7315f0241599b65aff8770523/p/r/product-18-grey_2.jpg"
+                      }
+                      width={65}
+                      height={65}
+                      layout="intrinsic"
+                    />
+                  </Box>{" "}
+                  <Box>
+                    <Text
+                      noOfLines={1}
+                      maxW="250px"
+                      fontSize="md"
+                      fontWeight="700"
+                    >
+                      Men Glasses Men GlassesMen GlassesMen GlassesMen
+                      GlassesMen GlassesMen GlassesMen GlassesMen GlassesMen
+                      Glasses
+                    </Text>
+                    <Text noOfLines={1} maxW="250px" fontSize="sm">
+                      R$ 250,00
+                    </Text>
+                  </Box>
+                  <IconButton
+                    colorScheme="red"
+                    aria-label="Search database"
+                    icon={<FaTimes />}
+                    size="md"
+                    variant="link"
+                  />
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem>
+                  <Link href="/carrinho" passHref>
+                    <a style={{ width: "100%" }}>
+                      <Button isFullWidth variant="link" fontSize="sm">
+                        Ir para o carrinho
+                      </Button>
+                    </a>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
             <Label right={"120px"}>1</Label>
             <IconButton
               variant="solid"
@@ -885,15 +1156,10 @@ export default function Home() {
               ml={10}
             />
           </Flex>
+
+          {/** MOBILE DISPLAY */}
+
           <Flex display={["flex", "flex", "none", "none", "none"]}>
-            <IconButton
-              variant="link"
-              icon={<BsBag />}
-              size="md"
-              fontSize={30}
-              color={configs.template.index.fixedPanel.color}
-            />
-            <Label right={"120px"}>1</Label>
             <IconButton
               variant="solid"
               icon={<AiOutlineMenu />}
@@ -907,6 +1173,8 @@ export default function Home() {
         </Flex>
       </Grid>
 
+      {/** BANNER */}
+
       <Box w="100%">
         <Image
           src="https://sacada.vteximg.com.br/arquivos/ids/169680/Sacada-Roupas-Femininas-fullbanner_int-RealLife.jpg?v=636503257764370000"
@@ -916,6 +1184,8 @@ export default function Home() {
           alt="Banner Dolce Encanto"
         />
       </Box>
+
+      {/** MENU MOBILE */}
 
       <Drawer
         isOpen={menuOpen}

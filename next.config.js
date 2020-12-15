@@ -11,4 +11,5 @@ module.exports = {
     ],
   },
   trailingSlash: true,
+  reactStrictMode: false,
 };
